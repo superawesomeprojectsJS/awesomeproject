@@ -1,22 +1,19 @@
-// var mongoose = require('mongoose');
-// var DBurl = 'mongodb://localhost:27017/awesomeproject';
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/awesomeproject');
+var db = mongoose.connection;
 
-// mongoose.connect(DBurl);
-// mongoose.connection.on('connected', function() {
-//   console.log('mongoose is connected to', DBurl);
-// });
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('database is connected');
+})
 
-// mongoose.connection.on('error', function(error) {
-//   console.log('mongoose error ', error);
-// });
-
-// mongoose.connection.on('disconnected', function() {
-//   console.log('mongoose disconnected');
-// });
-
-// process.on('SIGINT', function() {
-//   mongoose.connection.close(function() {
-//     console.log('mongoose disconnected through app termination');
-//     process.exit(0);
-//   })
+// var foodSchema = mongoose.Schema({
+//   name:String,
+//   waterPerGallon: Number
 // })
+
+// var Food = mongoose.model('Food', foodSchema)
+
+// exports.Food = Food;
+
+
